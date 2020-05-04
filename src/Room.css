@@ -1,0 +1,11 @@
+tbody tr {
+    cursor: pointer;
+}
+
+tbody tr:hover {
+    background-color: palegoldenrod;
+}
+
+tbody tr.selected {
+    background-color: sandybrown;
+}

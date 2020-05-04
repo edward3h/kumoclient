@@ -1,25 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Room from "./Room";
 
 
-const Table = () => {
-    const [rooms, setRooms] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [error, setErrors] = useState(false);
-
-    async function fetchData() {
-        setLoading(true);
-        const res = await fetch("/v0/rooms");
-        res
-            .json()
-            .then(res => setRooms(res))
-            .catch(err => setErrors(err))
-            .finally(() => setLoading(false));
-    }
-
-    useEffect(() => {
-        fetchData();
-    }, []);
+const Table = ({
+    loading, error, rooms,
+    selectedRooms, onSelect,
+    roomStatus
+}) => {
 
     let content;
     if (loading) {
@@ -28,7 +15,7 @@ const Table = () => {
         content = <div className="error">Error! {error}</div>
     } else {
         const rows = rooms.map(r =>
-            <Room key={r} name={r} />
+            <Room key={r} name={r} selected={selectedRooms.has(r)} handleClick={() => onSelect(r)} {...roomStatus[r]}/>
         );
         content = (
             <table>
@@ -43,6 +30,7 @@ const Table = () => {
                     </tr>
                 </thead>
                 <tbody>{rows}</tbody>
+                <tfoot><tr><th>All</th></tr></tfoot>
             </table>
         );
     }
