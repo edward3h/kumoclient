@@ -3,6 +3,7 @@ import './App.css';
 import Table from './Table';
 import kumoApi from './kumoApi';
 import useInterval from './useInterval';
+import isEqual from 'lodash/isEqual';
 
 function App() {
   const [roomNames, setRoomNames] = useState([]);
@@ -56,6 +57,15 @@ function App() {
     setSelected(newValue);
   };
 
+  const toggleSelectAll = () => {
+    const nameSet = new Set(roomNames);
+    if (isEqual(nameSet, selectedRooms)) {
+      setSelected(new Set());
+    } else {
+      setSelected(nameSet);
+    }
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -64,7 +74,7 @@ function App() {
       <div className="content">
         <Table loading={roomsLoading} error={error} rooms={roomNames}
         selectedRooms={selectedRooms} onSelect={toggleSelectedRoom}
-        roomStatus={roomData}/>
+        roomStatus={roomData} onSelectAll={toggleSelectAll}/>
       </div>
     </div>
   );

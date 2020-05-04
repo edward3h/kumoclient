@@ -1,11 +1,11 @@
-tbody tr {
+tbody tr, tfoot tr {
     cursor: pointer;
 }
 
-tbody tr:hover {
+tbody tr:hover, tfoot tr:hover {
     background-color: palegoldenrod;
 }
 
-tbody tr.selected {
+tr.selected {
     background-color: sandybrown;
 }

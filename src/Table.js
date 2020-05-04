@@ -5,7 +5,7 @@ import Room from "./Room";
 const Table = ({
     loading, error, rooms,
     selectedRooms, onSelect,
-    roomStatus
+    roomStatus, onSelectAll
 }) => {
 
     let content;
@@ -30,7 +30,7 @@ const Table = ({
                     </tr>
                 </thead>
                 <tbody>{rows}</tbody>
-                <tfoot><tr><th>All</th></tr></tfoot>
+                <tfoot><tr onClick={onSelectAll}><th colSpan="6">All</th></tr></tfoot>
             </table>
         );
     }
