@@ -1,7 +1,4 @@
 import React from "react";
-import Moment from 'react-moment';
-import './Room.css';
-
 
 const Room = ({ 
     name, selected, handleClick, loading, error,
@@ -12,9 +9,9 @@ const Room = ({
     let content;
     let rowClass = '';
     if (loading) {
-        content = <td className="loading">Loading room...</td>
+        content = <td className="loading" colspan="5">Loading room...</td>
     } else if (error) {
-        content = <td className="error">Error! {error}</td>
+        content = <td className="error" colspan="5">{`Error! ${error}`}</td>
     } else {
         content = (
             <>
@@ -22,7 +19,6 @@ const Room = ({
                 <td>{mode}</td>
                 <td>{heatTemp}</td>
                 <td>{coolTemp}</td>
-                <td><Moment format="HH:mm">{updated}</Moment></td>
             </>
         );
         if (selected) {

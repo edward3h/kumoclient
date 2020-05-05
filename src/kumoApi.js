@@ -1,8 +1,8 @@
 // not a React component :-P
 // depends on the API server from https://github.com/sushilks/kumojs (technically it depends on my fork right now because of a minor bugfix)
 
-const get = async (url) => {
-    const res = await fetch(url);
+const request = async (url, method = 'GET') => {
+    const res = await fetch(url, {method});
     if (res.ok) {
         return await res.json();
     }
@@ -25,11 +25,20 @@ const convertStatus = (resStatus) => {
     throw new Error('No status found in response');
 };
 
-const getRooms = () => get('/v0/rooms');
+const getRooms = () => request('/v0/rooms');
 
-const getRoomStatus = (name) => get(`/v0/room/${name}/status`).then(convertStatus);
+const getRoomStatus = (name) => request(`/v0/room/${name}/status`).then(convertStatus);
+
+const setRoomMode = (name, mode) => request(`/v0/room/${name}/mode/${mode}`, 'PUT');
+
+const setRoomHeat = (name, temp) => request(`/v0/room/${name}/heat/temp/${temp}`, 'PUT');
+
+const setRoomCool = (name, temp) => request(`/v0/room/${name}/cool/temp/${temp}`, 'PUT');
 
 export default {
     getRooms,
-    getRoomStatus
+    getRoomStatus,
+    setRoomMode,
+    setRoomHeat,
+    setRoomCool
 };

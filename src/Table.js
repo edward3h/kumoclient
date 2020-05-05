@@ -26,11 +26,10 @@ const Table = ({
                         <th>Mode</th>
                         <th>Heat</th>
                         <th>Cool</th>
-                        <th>Updated</th>
                     </tr>
                 </thead>
                 <tbody>{rows}</tbody>
-                <tfoot><tr onClick={onSelectAll}><th colSpan="6">All</th></tr></tfoot>
+                <tfoot><tr onClick={onSelectAll}><th colSpan="5">Select All</th></tr></tfoot>
             </table>
         );
     }
