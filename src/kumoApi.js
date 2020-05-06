@@ -25,15 +25,15 @@ const convertStatus = (resStatus) => {
     throw new Error('No status found in response');
 };
 
-const getRooms = () => request('/v0/rooms');
+const getRooms = () => request('v0/rooms');
 
-const getRoomStatus = (name) => request(`/v0/room/${name}/status`).then(convertStatus);
+const getRoomStatus = (name) => request(`v0/room/${name}/status`).then(convertStatus);
 
-const setRoomMode = (name, mode) => request(`/v0/room/${name}/mode/${mode}`, 'PUT');
+const setRoomMode = (name, mode) => request(`v0/room/${name}/mode/${mode}`, 'PUT');
 
-const setRoomHeat = (name, temp) => request(`/v0/room/${name}/heat/temp/${temp}`, 'PUT');
+const setRoomHeat = (name, temp) => request(`v0/room/${name}/heat/temp/${temp}`, 'PUT');
 
-const setRoomCool = (name, temp) => request(`/v0/room/${name}/cool/temp/${temp}`, 'PUT');
+const setRoomCool = (name, temp) => request(`v0/room/${name}/cool/temp/${temp}`, 'PUT');
 
 export default {
     getRooms,

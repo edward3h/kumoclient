@@ -34,5 +34,6 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:18084"
+  "proxy": "http://localhost:18084",
+  "homepage": "/heat"
 }

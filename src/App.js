@@ -62,7 +62,7 @@ function App() {
 
     kumoApi.getRooms()
       .then(setRoomNames)
-      .catch(setError)
+      .catch((error) => setError(error))
       .finally(() => setRoomsLoading(false));
   }, []); // should never change after load
 

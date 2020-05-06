@@ -12,7 +12,7 @@ const Table = ({
     if (loading) {
         content = <div className="loading">Loading rooms...</div>
     } else if (error) {
-        content = <div className="error">Error! {error}</div>
+        content = <div className="error">{`Error! ${error}`}</div>
     } else {
         const rows = rooms.map(r =>
             <Room key={r} name={r} selected={selectedRooms.has(r)} handleClick={() => onSelect(r)} {...roomStatus[r]}/>
