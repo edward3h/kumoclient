@@ -136,6 +136,7 @@ function App() {
         <Controls sendUpdate={dispatchUpdate} modes={modes} heatTemp={heatTemp} coolTemp={coolTemp}/>
       }
       </HeaderContainer>
+      <footer><a href="https://github.com/edward3h/kumoclient/issues">Report a bug.</a></footer>
     </div>
   );
 }
