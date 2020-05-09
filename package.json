@@ -6,8 +6,11 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.2",
     "moment": "2.24.0",
     "moment-timezone": "^0.5.28",
+    "prettier": "^2.0.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-moment": "^0.9.7",
@@ -35,5 +38,15 @@
     ]
   },
   "proxy": "http://localhost:18084",
-  "homepage": "/heat"
+  "homepage": "/heat",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --write"
+    ]
+  }
 }

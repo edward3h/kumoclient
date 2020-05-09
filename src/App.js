@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Table from './Table';
-import kumoApi from './kumoApi';
-import useInterval from './useInterval';
-import isEqual from 'lodash/isEqual';
-import Controls from './Controls';
-import HeaderContainer from './HeaderContainer';
+import Table from "./Table";
+import kumoApi from "./kumoApi";
+import useInterval from "./useInterval";
+import isEqual from "lodash/isEqual";
+import Controls from "./Controls";
+import HeaderContainer from "./HeaderContainer";
 
 const selectedRoomAverages = (selectedRooms, roomData) => {
   const modes = new Set();
@@ -15,7 +15,10 @@ const selectedRoomAverages = (selectedRooms, roomData) => {
   }
 
   // yup I tried a couple of ways of implementing it in functional style then decided imperative was easier
-  let heatSum = 0, heatCount = 0, coolSum = 0, coolCount = 0;
+  let heatSum = 0,
+    heatCount = 0,
+    coolSum = 0,
+    coolCount = 0;
 
   selectedRooms.forEach((name) => {
     const rs = roomData[name];
@@ -33,7 +36,7 @@ const selectedRoomAverages = (selectedRooms, roomData) => {
       }
     }
   });
-  
+
   if (heatCount > 0) {
     heatTemp = Math.round(heatSum / heatCount);
   }
@@ -60,7 +63,8 @@ function App() {
   useEffect(() => {
     setRoomsLoading(true);
 
-    kumoApi.getRooms()
+    kumoApi
+      .getRooms()
       .then(setRoomNames)
       .catch((error) => setError(error))
       .finally(() => setRoomsLoading(false));
@@ -68,7 +72,6 @@ function App() {
 
   // get room statuses
   useEffect(() => {
-
     const updateRoomData = (name, data) => {
       setRoomData((oldObj) => {
         const newObj = { ...oldObj };
@@ -79,7 +82,8 @@ function App() {
     const getRoomStatus = (name) => {
       updateRoomData(name, { loading: true });
 
-      kumoApi.getRoomStatus(name)
+      kumoApi
+        .getRoomStatus(name)
         .then((data) => updateRoomData(name, data))
         .catch((error) => updateRoomData(name, { error }));
       // don't need to unset loading, it is effectively removed by the result or error cases above
@@ -108,7 +112,7 @@ function App() {
 
   const dispatchUpdate = (message) => {
     const promises = [];
-    selectedRooms.forEach(name => {
+    selectedRooms.forEach((name) => {
       if (message.mode) {
         promises.push(kumoApi.setRoomMode(name, message.mode));
       }
@@ -119,24 +123,42 @@ function App() {
         promises.push(kumoApi.setRoomCool(name, message.coolTemp));
       }
     });
-    Promise.all(promises)
-    .then(() => setTimeout(() => setTrigger((x) => x + 1), 1000));
+    Promise.all(promises).then(() =>
+      setTimeout(() => setTrigger((x) => x + 1), 1000)
+    );
   };
 
-  const [modes, heatTemp, coolTemp] = selectedRoomAverages(selectedRooms, roomData);
+  const [modes, heatTemp, coolTemp] = selectedRoomAverages(
+    selectedRooms,
+    roomData
+  );
 
   return (
     <div className="App">
       <HeaderContainer title="Heat Controls">
-    
-        <Table loading={roomsLoading} error={error} rooms={roomNames}
-          selectedRooms={selectedRooms} onSelect={toggleSelectedRoom}
-          roomStatus={roomData} onSelectAll={toggleSelectAll} />
-      {selectedRooms.size > 0 &&
-        <Controls sendUpdate={dispatchUpdate} modes={modes} heatTemp={heatTemp} coolTemp={coolTemp}/>
-      }
+        <Table
+          loading={roomsLoading}
+          error={error}
+          rooms={roomNames}
+          selectedRooms={selectedRooms}
+          onSelect={toggleSelectedRoom}
+          roomStatus={roomData}
+          onSelectAll={toggleSelectAll}
+        />
+        {selectedRooms.size > 0 && (
+          <Controls
+            sendUpdate={dispatchUpdate}
+            modes={modes}
+            heatTemp={heatTemp}
+            coolTemp={coolTemp}
+          />
+        )}
       </HeaderContainer>
-      <footer><a href="https://github.com/edward3h/kumoclient/issues">Report a bug.</a></footer>
+      <footer>
+        <a href="https://github.com/edward3h/kumoclient/issues">
+          Report a bug.
+        </a>
+      </footer>
     </div>
   );
 }
