@@ -16,12 +16,12 @@ const Room = ({
   let rowClass = "";
   if (loading) {
     content = (
-      <td className="loading" colspan="5">
+      <td className="loading" colSpan="5">
         Loading room...
       </td>
     );
   } else if (error) {
-    content = <td className="error" colspan="5">{`Error! ${error}`}</td>;
+    content = <td className="error" colSpan="5">{`Error! ${error}`}</td>;
   } else {
     content = (
       <>
