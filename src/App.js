@@ -8,6 +8,7 @@ import HeaderContainer from "./HeaderContainer";
 
 const selectedRoomAverages = (selectedRooms, roomData) => {
   const modes = new Set();
+  let currentTemp = 0;
   let heatTemp = 0;
   let coolTemp = 0;
   if (!selectedRooms || selectedRooms.size === 0 || !roomData) {
@@ -18,7 +19,9 @@ const selectedRoomAverages = (selectedRooms, roomData) => {
   let heatSum = 0,
     heatCount = 0,
     coolSum = 0,
-    coolCount = 0;
+    coolCount = 0,
+    currentSum = 0,
+    currentCount = 0;
 
   selectedRooms.forEach((name) => {
     const rs = roomData[name];
@@ -34,6 +37,10 @@ const selectedRoomAverages = (selectedRooms, roomData) => {
         coolSum += rs.coolTemp;
         coolCount += 1;
       }
+      if (rs.temp) {
+        currentSum += rs.temp;
+        currentCount += 1;
+      }
     }
   });
 
@@ -45,7 +52,10 @@ const selectedRoomAverages = (selectedRooms, roomData) => {
     coolTemp = Math.round(coolSum / coolCount);
   }
 
-  return [modes, heatTemp, coolTemp];
+  if (currentCount > 0) {
+    currentTemp = Math.round(currentSum / currentCount);
+  }
+  return [modes, currentTemp, heatTemp, coolTemp];
 };
 
 function App() {
@@ -128,7 +138,7 @@ function App() {
     );
   };
 
-  const [modes, heatTemp, coolTemp] = selectedRoomAverages(
+  const [modes, currentTemp, heatTemp, coolTemp] = selectedRoomAverages(
     selectedRooms,
     roomData
   );
@@ -145,14 +155,14 @@ function App() {
           roomStatus={roomData}
           onSelectAll={toggleSelectAll}
         />
-        {selectedRooms.size > 0 && (
-          <Controls
-            sendUpdate={dispatchUpdate}
-            modes={modes}
-            heatTemp={heatTemp}
-            coolTemp={coolTemp}
-          />
-        )}
+        <Controls
+          sendUpdate={dispatchUpdate}
+          modes={modes}
+          currentTemp={currentTemp}
+          heatTemp={heatTemp}
+          coolTemp={coolTemp}
+          enabled={selectedRooms.size > 0}
+        />
       </HeaderContainer>
       <footer>
         <a href="https://github.com/edward3h/kumoclient/issues">

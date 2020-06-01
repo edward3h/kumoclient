@@ -65,6 +65,9 @@ div.button,
   border: solid medium black;
   padding: 0.3em;
 }
+.disabled .button {
+  border-color: grey;
+}
 
 .number span.minus {
   border-top-left-radius: 1em;
@@ -88,6 +91,10 @@ div.numbers,
 
 .controls h1 {
   font-size: 1.6em;
+}
+
+.controls.disabled {
+  color: grey;
 }
 
 footer {

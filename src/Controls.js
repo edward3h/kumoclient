@@ -1,12 +1,48 @@
 import React from "react";
 import Button from "./Button";
-import Number from "./Number";
 import HeaderContainer from "./HeaderContainer";
 
-const Controls = ({ sendUpdate, modes, heatTemp, coolTemp }) => {
-  const partial = modes.size > 1;
+const heatOptions = [62, 65, 68];
+const coolOptions = [66, 69, 72, 75];
+
+const TempButtons = ({ onButtonClick, title, tempOptions, selectedValue }) => {
   return (
-    <div className="controls">
+    <HeaderContainer title={title}>
+      {tempOptions.map((value) => (
+        <Button
+          key={value}
+          label={value}
+          selected={value === selectedValue}
+          onClick={() => onButtonClick(value)}
+        />
+      ))}
+    </HeaderContainer>
+  );
+};
+
+const Controls = ({
+  sendUpdate,
+  modes,
+  currentTemp,
+  heatTemp,
+  coolTemp,
+  enabled,
+}) => {
+  const partial = modes.size > 1;
+  const disabledClass = enabled ? "" : "disabled";
+  let tempOptions = heatOptions;
+  let tempTitle = "Heat";
+  let tempOnClick = (value) => sendUpdate({ heatTemp: value });
+  let tempCurrent = heatTemp;
+
+  if (modes.has("cool") || (!modes.has("heat") && currentTemp > 71)) {
+    tempOptions = coolOptions;
+    tempTitle = "Cool";
+    tempCurrent = coolTemp;
+    tempOnClick = (value) => sendUpdate({ coolTemp: value });
+  }
+  return (
+    <div className={`controls ${disabledClass}`}>
       <HeaderContainer title="Mode">
         <Button
           label="Off"
@@ -27,18 +63,12 @@ const Controls = ({ sendUpdate, modes, heatTemp, coolTemp }) => {
           partial={partial}
         />
       </HeaderContainer>
-      <div className="numbers">
-        <Number
-          title="Heat"
-          value={heatTemp}
-          onChange={(value) => sendUpdate({ heatTemp: value })}
-        />
-        <Number
-          title="Cool"
-          value={coolTemp}
-          onChange={(value) => sendUpdate({ coolTemp: value })}
-        />
-      </div>
+      <TempButtons
+        selectedValue={tempCurrent}
+        title={tempTitle}
+        tempOptions={tempOptions}
+        onButtonClick={tempOnClick}
+      />
     </div>
   );
 };
