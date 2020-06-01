@@ -1,9 +1,4 @@
 {
-    "svn.ignoreMissingSvnWarning": true,
-    "cSpell.ignoreWords": [
-        "kumoclient",
-        "kumo",
-        "colspan",
-        "browserslist"
-    ]
+  "svn.ignoreMissingSvnWarning": true,
+  "cSpell.ignoreWords": ["kumoclient", "kumo", "colspan", "browserslist"]
 }
