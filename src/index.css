@@ -80,21 +80,46 @@ div.button,
   border-left: none;
 }
 div.numbers,
-.controls .container {
+.controls .container,
+.weather {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .selected.partial {
   border-style: dashed;
 }
-
+h1 {
+  margin-block-end: 0.4em;
+}
 .controls h1 {
   font-size: 1.6em;
 }
 
 .controls.disabled {
   color: grey;
+}
+
+.Weather h1 {
+  font-size: 1.4em;
+  margin-block-end: 0;
+}
+
+.weather {
+  font-size: 1.2em;
+}
+.weather div {
+  margin: 0.1em;
+}
+.weather img {
+  height: 1.5em;
+}
+.weather .high {
+  color: red;
+}
+.weather .low {
+  color: blue;
 }
 
 footer {

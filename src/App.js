@@ -5,6 +5,8 @@ import useInterval from "./useInterval";
 import isEqual from "lodash/isEqual";
 import Controls from "./Controls";
 import HeaderContainer from "./HeaderContainer";
+import getWeather from "./weatherApi";
+import Weather from "./Weather";
 
 const selectedRoomAverages = (selectedRooms, roomData) => {
   const modes = new Set();
@@ -65,6 +67,7 @@ function App() {
   const [roomsLoading, setRoomsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [trigger, setTrigger] = useState(0); // counter used to force updates in some cases
+  const [weatherData, setWeatherData] = useState({});
 
   // trigger a status update every so often
   useInterval(() => setTrigger((x) => x + 1), 60 * 1000);
@@ -100,6 +103,11 @@ function App() {
     };
     roomNames.forEach(getRoomStatus);
   }, [roomNames, trigger]); // update based on roomNames or when triggered
+
+  // update weather
+  useEffect(() => {
+    getWeather().then((data) => setWeatherData(data));
+  }, [trigger]);
 
   const toggleSelectedRoom = (name) => {
     const newValue = new Set(selectedRooms);
@@ -163,6 +171,9 @@ function App() {
           coolTemp={coolTemp}
           enabled={selectedRooms.size > 0}
         />
+        <HeaderContainer title="Weather">
+          <Weather {...weatherData} />
+        </HeaderContainer>
       </HeaderContainer>
       <footer>
         <a href="https://github.com/edward3h/kumoclient/issues">
