@@ -142,3 +142,19 @@ footer {
     background-color: yellowgreen;
   }
 }
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: rgb(32, 54, 54);
+    color: rgb(192, 228, 217);
+  }
+  .button {
+    border-color: rgb(192, 228, 217);
+  }
+  .weather .high {
+    color: orange;
+  }
+  .weather .low {
+    color: lightskyblue;
+  }
+}
