@@ -157,4 +157,10 @@ footer {
   .weather .low {
     color: lightskyblue;
   }
+  a {
+    color: powderblue;
+  }
+  a:visited {
+    color: pink;
+  }
 }
