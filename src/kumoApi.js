@@ -11,12 +11,19 @@ const request = async (url, method = "GET") => {
 
 const c2f = (tempC) => Math.round((tempC * 9) / 5 + 32);
 
+const convertMode = (sMode) => {
+  if (sMode == "vent") {
+    return "fan";
+  }
+  return sMode;
+};
+
 const convertStatus = (resStatus) => {
   const s = resStatus?.r?.indoorUnit?.status;
   if (s) {
     return {
       temp: c2f(s.roomTemp),
-      mode: s.mode,
+      mode: convertMode(s.mode),
       heatTemp: c2f(s.spHeat),
       coolTemp: c2f(s.spCool),
       updated: Date.now(),

@@ -62,6 +62,12 @@ const Controls = ({
           selected={modes.has("cool")}
           partial={partial}
         />
+        <Button
+          label="Fan"
+          onClick={() => sendUpdate({ mode: "vent" })}
+          selected={modes.has("vent")}
+          partial={partial}
+        />
       </HeaderContainer>
       <TempButtons
         selectedValue={tempCurrent}
