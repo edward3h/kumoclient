@@ -3,7 +3,7 @@ import Button from "./Button";
 import HeaderContainer from "./HeaderContainer";
 
 const heatOptions = [62, 65, 68];
-const coolOptions = [66, 69, 72, 75];
+const coolOptions = [69, 72, 75, 78];
 
 const TempButtons = ({ onButtonClick, title, tempOptions, selectedValue }) => {
   return (
