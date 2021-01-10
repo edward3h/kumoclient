@@ -7,6 +7,8 @@ import Controls from "./Controls";
 import HeaderContainer from "./HeaderContainer";
 import getWeather from "./weatherApi";
 import Weather from "./Weather";
+import getSensorData from "./sensorApi";
+import Sensors from "./Sensors";
 
 const selectedRoomAverages = (selectedRooms, roomData) => {
   const modes = new Set();
@@ -68,6 +70,7 @@ function App() {
   const [error, setError] = useState(null);
   const [trigger, setTrigger] = useState(0); // counter used to force updates in some cases
   const [weatherData, setWeatherData] = useState({});
+  const [sensorData, setSensorData] = useState([]);
 
   // trigger a status update every so often
   useInterval(() => setTrigger((x) => x + 1), 60 * 1000);
@@ -107,6 +110,11 @@ function App() {
   // update weather
   useEffect(() => {
     getWeather().then((data) => setWeatherData(data));
+  }, [trigger]);
+
+  // update sensors
+  useEffect(() => {
+    getSensorData().then((data) => setSensorData(data));
   }, [trigger]);
 
   const toggleSelectedRoom = (name) => {
@@ -173,6 +181,7 @@ function App() {
         />
         <HeaderContainer title="Weather">
           <Weather {...weatherData} />
+          <Sensors data={sensorData} />
         </HeaderContainer>
       </HeaderContainer>
       <footer>

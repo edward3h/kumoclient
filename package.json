@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^7.1.2",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.2",
+    "lodash": "^4.17.20",
     "moment": "2.24.0",
     "moment-timezone": "^0.5.28",
     "prettier": "^2.0.5",
@@ -37,7 +38,7 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:18084",
+  "proxy": "http://localhost/heat/",
   "homepage": "/heat",
   "husky": {
     "hooks": {

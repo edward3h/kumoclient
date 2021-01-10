@@ -12,7 +12,7 @@ const request = async (url, method = "GET") => {
 const c2f = (tempC) => Math.round((tempC * 9) / 5 + 32);
 
 const convertMode = (sMode) => {
-  if (sMode == "vent") {
+  if (sMode === "vent") {
     return "fan";
   }
   return sMode;
