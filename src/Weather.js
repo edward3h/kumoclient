@@ -1,6 +1,6 @@
 import React from "react";
 
-export default ({ currentTemp, icons = [], high, low }) => {
+const Weather = ({ currentTemp, icons = [], high, low }) => {
   const renderIcons = icons.map((icon) => (
     <img
       key={icon}
@@ -17,3 +17,5 @@ export default ({ currentTemp, icons = [], high, low }) => {
     </div>
   );
 };
+
+export default Weather;

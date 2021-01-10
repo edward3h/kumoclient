@@ -46,10 +46,12 @@ const setRoomHeat = (name, temp) =>
 const setRoomCool = (name, temp) =>
   request(`v0/room/${name}/cool/temp/${temp}`, "PUT");
 
-export default {
+const kumoApi = {
   getRooms,
   getRoomStatus,
   setRoomMode,
   setRoomHeat,
   setRoomCool,
 };
+
+export default kumoApi;
