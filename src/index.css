@@ -30,8 +30,7 @@ th {
 }
 
 th,
-td,
-.temp {
+td {
   padding: 0.3em;
 }
 
@@ -125,6 +124,9 @@ h1 {
 }
 .weather .low {
   color: blue;
+}
+.weather .temp {
+  padding: 0 0.3em;
 }
 
 .weather .ago {
