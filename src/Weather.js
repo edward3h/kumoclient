@@ -9,12 +9,14 @@ const Weather = ({ currentTemp, icons = [], high, low }) => {
     />
   ));
   return (
-    <div className="weather">
+    <>
       <div className="name">OpenWeather</div>
       <div className="temp">{currentTemp}</div>
       <div>{renderIcons}</div>
-      <div className="high">{high}</div>/<div className="low">{low}</div>
-    </div>
+      <div>
+        <span className="high">{high}</span>/<span className="low">{low}</span>
+      </div>
+    </>
   );
 };
 

@@ -14,7 +14,7 @@ body {
 }
 
 table,
-.Weather .container {
+.weather {
   margin-left: auto;
   margin-right: auto;
   border-collapse: collapse;
@@ -83,8 +83,7 @@ div.button,
   border-left: none;
 }
 div.numbers,
-.controls .container,
-.weather {
+.controls .container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -109,16 +108,13 @@ h1 {
   margin-block-end: 0;
 }
 
-.Weather .container {
-  display: table;
-}
-
 .weather {
   /* font-size: 1.2em; */
-  display: table-row;
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  justify-content: center;
 }
 .weather div {
-  display: table-cell;
   margin: 0.1em;
 }
 .weather img {
@@ -129,6 +125,11 @@ h1 {
 }
 .weather .low {
   color: blue;
+}
+
+.weather .ago {
+  font-style: italic;
+  grid-column-end: span 2;
 }
 
 footer {

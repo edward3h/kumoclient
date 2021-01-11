@@ -179,7 +179,7 @@ function App() {
           coolTemp={coolTemp}
           enabled={selectedRooms.size > 0}
         />
-        <HeaderContainer title="Weather">
+        <HeaderContainer title="Weather" containerClassName="weather">
           <Weather {...weatherData} />
           <Sensors data={sensorData} />
         </HeaderContainer>

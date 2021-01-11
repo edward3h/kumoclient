@@ -12,10 +12,11 @@ const fetchData = async () => {
 const convertData = (weatherRes) => {
   if (weatherRes) {
     return _.sortBy(
-      Object.entries(weatherRes).map(([k, v]) => {
+      weatherRes.map((x) => {
         return {
-          currentTemp: Math.round(v / 10),
-          name: k,
+          currentTemp: Math.round(x.temperature),
+          name: x.name,
+          minutesAgo: x.last,
         };
       }),
       ["name"]
