@@ -5,7 +5,8 @@ const Sensors = ({ data }) => {
     <>
       <div className="name">{row.name}</div>
       <div className="temp">{row.currentTemp}</div>
-      <div className="ago">{row.minutesAgo} minutes</div>
+      <div className="humidity">{row.humidity}%</div>
+      <div className="ago">{row.minutesAgo} min</div>
     </>
   ));
 

@@ -17,6 +17,7 @@ const convertData = (weatherRes) => {
           currentTemp: Math.round(x.temperature),
           name: x.name,
           minutesAgo: x.last,
+          humidity: x.humidity,
         };
       }),
       ["name"]

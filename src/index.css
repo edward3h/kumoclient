@@ -21,6 +21,7 @@ table,
 }
 
 tr td:first-child,
+tr th:first-child,
 .name {
   text-align: left;
 }
@@ -125,13 +126,15 @@ h1 {
 .weather .low {
   color: blue;
 }
-.weather .temp {
+.weather .temp,
+.weather .humidity {
   padding: 0 0.3em;
 }
 
 .weather .ago {
   font-style: italic;
-  grid-column-end: span 2;
+  font-size: 0.7em;
+  align-self: end;
 }
 
 footer {
