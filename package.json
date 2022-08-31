@@ -10,7 +10,7 @@
     "lint-staged": "^10.2.2",
     "lodash": "^4.17.21",
     "moment": "2.29.1",
-    "moment-timezone": "^0.5.28",
+    "moment-timezone": "^0.5.35",
     "prettier": "^2.0.5",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
